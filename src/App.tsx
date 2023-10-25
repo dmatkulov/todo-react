@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, {useState} from 'react';
+import Task from './AddTaskForm/Task.tsx';
+import './App.css';
+import AddTaskForm from './AddTaskForm/AddTaskForm.tsx';
 
-function App() {
-  const [count, setCount] = useState(0)
+
+interface Task {
+  id: string;
+  task: string;
+}
+let id: number = 0;
+const App = () => {
+  const [tasks, setTasks] = useState<Task[]>([
+    {task: 'Task1', id: `${id++}`},
+    {task: 'Task2', id: `${id++}`}
+  ]);
+
+  const [currentTask, setCurrentTask] = useState('');
+
+  const getNewTask = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newTask = event.target.value;
+    setCurrentTask(newTask);
+  };
+
+  const addNewTask = () => {
+    if (currentTask !== '') {
+      const tasksCopy = [...tasks];
+      const newTask = [...tasksCopy, {task: currentTask, id: `${id++}`}];
+      setTasks(newTask);
+      setCurrentTask('');
+    }
+  };
+
+  const removeTask = (taskId: string) => {
+    const updateTaskList = tasks.filter((task) => task.id !== taskId);
+    setTasks(updateTaskList);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <AddTaskForm
+        task={currentTask}
+        onNewTask={(event) => getNewTask(event)}
+        onAddTask={addNewTask}
+      />
+      <div className="task-wrapper">
+        {tasks.map((task) => (
+          <Task key={task.id} task={task.task} onRemove={() => removeTask(task.id)}/>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;

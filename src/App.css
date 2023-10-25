@@ -2,41 +2,71 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app {
+  background-color: #1a1a3d;
+  padding: 20px;
+  border-radius: 16px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.add-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  padding: 16px 0 36px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.input {
+  background-color: rgba(82, 82, 141, 0.3);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 0 16px;
 }
 
-.card {
-  padding: 2em;
+.input::placeholder {
+  color: white;
 }
 
-.read-the-docs {
-  color: #888;
+.btn-add {
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  background-color: dodgerblue;
+}
+
+.task-wrapper {
+  margin-top: 36px;
+}
+
+.task-item {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  color: white;
+  font-size: 16px;
+}
+
+.btn-remove {
+  background-color: crimson;
+  width: 32px;
+  height: 32px;
+  text-indent: 300%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.btn-remove:hover {
+  background-color: #bb0021;
+}
+
+.task-text {
+  width: 300px;
+  margin: 0;
 }
