@@ -8,6 +8,8 @@
   background-color: #1a1a3d;
   padding: 20px;
   border-radius: 16px;
+  width: 400px;
+  box-shadow: 0 10px 10px 0 rgba(31, 41, 55, 0.04), 0 20px 25px 0 rgba(31, 41, 55, 0.10);
 }
 
 .add-form {
@@ -36,7 +38,8 @@
   border-radius: 8px;
   color: white;
   font-weight: bold;
-  background-color: dodgerblue;
+  padding-left: 36px;
+  background: dodgerblue url("assets/add-circle-fill.svg") left 12px center / 18px 18px no-repeat;
 }
 
 .task-wrapper {
@@ -54,12 +57,12 @@
 }
 
 .btn-remove {
-  background-color: crimson;
   width: 32px;
   height: 32px;
   text-indent: 300%;
   padding: 0;
   overflow: hidden;
+  background: crimson url("assets/delete-bin-2-fill.svg") center / 18px 18px no-repeat;
 }
 
 .btn-remove:hover {
@@ -67,6 +70,15 @@
 }
 
 .task-text {
-  width: 300px;
+  margin: 0;
+}
+
+.empty-list {
+  color: rgba(236, 236, 236, 0.51);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.empty-list > p {
   margin: 0;
 }

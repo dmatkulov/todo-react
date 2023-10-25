@@ -8,6 +8,7 @@ interface Task {
   id: string;
   task: string;
 }
+
 let id: number = 0;
 const App = () => {
   const [tasks, setTasks] = useState<Task[]>([
@@ -32,21 +33,40 @@ const App = () => {
   };
 
   const removeTask = (taskId: string) => {
-    const updateTaskList = tasks.filter((task) => task.id !== taskId);
-    setTasks(updateTaskList);
+    const index = tasks.findIndex((task) => task.id === taskId);
+    const tasksCopy = [...tasks];
+    tasksCopy.splice(index, 1);
+    setTasks(tasksCopy);
   };
+
+  let taskList: React.ReactNode = null;
+
+  if (tasks.length > 0) {
+    taskList = tasks.map((task) => {
+      return (
+        <Task key={task.id} task={task.task} onRemove={() => removeTask(task.id)}/>
+      );
+    });
+  } else {
+    taskList = (
+      <div className="empty-list">
+        <p>Task list is empty</p>
+        <p>Add new task</p>
+      </div>
+    );
+  }
 
   return (
     <div className="app">
-      <AddTaskForm
-        task={currentTask}
-        onNewTask={(event) => getNewTask(event)}
-        onAddTask={addNewTask}
-      />
+      <div>
+        <AddTaskForm
+          task={currentTask}
+          onNewTask={(event) => getNewTask(event)}
+          onAddTask={addNewTask}
+        />
+      </div>
       <div className="task-wrapper">
-        {tasks.map((task) => (
-          <Task key={task.id} task={task.task} onRemove={() => removeTask(task.id)}/>
-        ))}
+        {taskList}
       </div>
     </div>
   );
