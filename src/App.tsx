@@ -11,8 +11,8 @@ interface Task {
 let id: number = 0;
 const App = () => {
   const [tasks, setTasks] = useState<Task[]>([
-    {task: 'Task1', id: `${id++}`},
-    {task: 'Task2', id: `${id++}`}
+    {task: 'This is task number 1', id: `${id++}`},
+    {task: 'This is task number 2', id: `${id++}`}
   ]);
 
   const [currentTask, setCurrentTask] = useState('');
