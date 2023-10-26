@@ -5,6 +5,7 @@
 }
 
 .app {
+  min-height: 200px;
   background-color: #1a1a3d;
   padding: 20px;
   border-radius: 16px;
